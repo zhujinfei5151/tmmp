@@ -1,0 +1,3 @@
+Release Issue - TaskEngine - Version 1.0.0
+
+	* [ISSUE-001] - 改进：可以为每个task灵活配置线程池（并发量）大小，保持默认大小设置；
