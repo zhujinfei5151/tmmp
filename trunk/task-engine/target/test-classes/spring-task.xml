@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+<beans>	
+	
+	<!-- 
+		一个简单的任务例子 
+	-->
+	<bean id="sampleTask" class="org.task.SampleTask">
+		<property name="taskName" value="sample"/>
+		<property name="interval" value="10"/>
+		<property name="serviceObject">
+			<ref bean="sampleSVC"/>
+		</property>
+		<property name="serviceMethod" value="doSomething"/>
+	</bean>	
+	
+	<bean id="sampleSVC" class="org.svc.SampleSVC">
+	</bean>	
+
+</beans>
