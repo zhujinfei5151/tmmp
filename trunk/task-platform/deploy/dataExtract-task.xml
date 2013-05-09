@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	1、统一的调度处理方式：(1)定时获取待处理任务数据 (2)轮询服务组件列表，分配任务数据 (3)服务组件异步处理
+	2、基于任务数据ID的任务数据平均分配机制（避免网络中大量数据通信）：输入器只获取任务数据ID列表即可，处理器根据任务数据ID载入任务数据并处理
+	3、系统架构：任务管理（增删改查任务配置信息）+ 任务监控（启停、监视、控制）+任务调度（组件初始化、调度执行、任务数据分配，动态服务代理、输入器代理、处理器代理列表）+WS组件+Bean组件
+ -->
+<task name="DataExtractTask" desc="数据抽取任务">
+	<!-- 任务输入器 -->
+	<inputer>
+		<schedule>
+			<interval>30</interval>
+		</schedule>
+		<bean name="dataExtractSVC" class="net.pgia.info.svc.impl.DataExtractSVCImpl">
+			<method name="getTargetIds">
+				<param name="count" value="10"/>
+			</method>
+		</bean>
+	</inputer>
+	<!-- 任务分发器 -->
+	<dispatcher>
+		<!-- 根据任务数据的ID进行平均分配 -->
+		<rule name="id">
+			<property name="count" value="1"/>
+		</rule>
+	</dispatcher>
+	<!-- 任务处理器 -->
+	<processor>
+		<!-- Bean配置 -->
+		<bean name="dataExtractSVC">
+			<method name="extractData"></method>
+		</bean>
+	</processor>
+</task>
