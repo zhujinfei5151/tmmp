@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	平台启动 -> 初始化并启动各服务与引擎（任务运行引擎）
+	任务运行引擎启动 -> 扫描并加载各task.xml -> 对每个task：初始化运行代理组件 -> 启动任务运行代理组件（从而启动任务）
+ -->
+<platform type="master">
+	<!-- 连接器 -->
+	<conector port="7000"></conector>
+	<!-- 资源配置 -->
+	<resource>
+		<endpoint>192.168.3.1:7000</endpoint>
+		<endpoint>192.168.3.2:7000</endpoint>
+		<endpoint>192.168.3.3:7000</endpoint>
+	</resource>
+</platform>

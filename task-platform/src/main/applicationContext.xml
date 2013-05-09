@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!--
+		Configure spring to give a hook to axis2 without a ServletContext
+	-->
+	<bean id="applicationContext"
+		class="org.apache.axis2.extensions.spring.receivers.ApplicationContextHolder" />
+
+	<bean id="masterService" class="org.waddy.task.master.MasterService"/>
+	<bean id="masterBootloader" class="org.waddy.task.master.MasterBootloader" init-method="start"/>
+
+	<bean id="slaveService" class="org.waddy.task.slave.SlaveService"/>
+	<bean id="slaveBootloader" class="org.waddy.task.slave.SlaveBootloader" init-method="start"/>
+
+</beans>

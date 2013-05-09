@@ -1,0 +1,37 @@
+<serviceGroup>
+
+	<!-- 主节点服务 -->
+	<service name="MasterService">
+		<description> Master Node Service </description>
+		<!--
+			<parameter name="ServiceObjectSupplier" locked="false">com.tiilii.tiisso.service.SSOWebService</parameter>
+			<parameter name="SpringBeanName" locked="false">masterService</parameter>
+		-->
+		<parameter name="ServiceClass">org.waddy.task.master.MasterService
+		</parameter>
+		<messageReceivers>
+			<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only"
+				class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+			<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</messageReceivers>
+	</service>
+
+	<!-- 从节点服务 -->
+	<service name="SlaveService">
+		<description> Slave Node Service </description>
+		<parameter name="ServiceObjectSupplier">org.apache.axis2.extensions.spring.receivers.SpringAppContextAwareObjectSupplier</parameter>
+		<parameter name="SpringBeanName">slaveService</parameter>
+		<!--
+		<parameter name="ServiceClass">org.waddy.task.slave.SlaveService
+		</parameter>
+		-->
+		<messageReceivers>
+			<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only"
+				class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+			<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</messageReceivers>
+	</service>
+
+</serviceGroup>
